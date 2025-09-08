@@ -1,0 +1,89 @@
+---
+title: "DATA 620 Assignment 1"
+author: "Warner Alexis"
+date: "2025-09-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+use_virtualenv("r-reticulate", required = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## **Assignment : “hello, graph world”**
+We are going to show the Krackhardt kite in the assignment. We are using Networkx library to create the grapgh object and matplotlib to show the actual plot. 
+
+We loads the correct libraries needed
+```{python}
+import networkx as nx  # load the networkx library to create the graph object 
+import matplotlib.pyplot as plt 
+```
+
+
+
+We are going to create the nodes and the edges below: 
+
+```{python}
+# create the nodes 
+GG = nx.Graph()
+
+nodes = ["Andre","Beverly", "Carol", "Diane", "Ed", 
+         "Fernando", "Garth", "Heather", "Ike", "Jane"] # this is all the name that are goijng to be the nodes 
+GG.add_nodes_from(nodes)
+```
+
+
+
+```{python}
+# Adding all the connection to the nodes (edges)
+
+edges = [ 
+    ("Andre", "Beverly"), ("Andre", "Carol"), ("Andre", "Diane"),
+    ("Beverly", "Diane"), ("Beverly", "Ed"),
+    ("Carol", "Diane"), ("Carol", "Fernando"),
+    ("Diane", "Ed"), ("Diane", "Fernando"), ("Diane", "Garth"),
+    ("Ed", "Garth"),
+    ("Fernando", "Garth"), ("Fernando", "Heather"),
+    ("Garth", "Heather"),
+    ("Heather", "Ike"),
+    ("Ike", "Jane")
+]
+GG.add_edges_from(edges)
+```
+
+
+Before we create the plot, let check how many edges and nodes are the GG objects. 
+
+```{python}
+# number of nodes 
+print(f" we have the {GG.number_of_nodes()} nodes for the the Krackhardt kite plot")
+list(nx.connected_components(GG))
+
+
+
+```
+
+```{python}
+
+print(f" We have {GG.number_of_edges()} edges for the the Krackhardt kite plot")
+
+GG.edges # This show all the connections
+```
+
+
+```{python}
+# plot the grapgh for GG 
+plt.figure(figsize=(10,8))
+pos = nx.spring_layout(GG, seed = 42) 
+
+nx.draw(GG, pos, with_labels=True, node_color = 'violet',
+        node_size= 2000, font_size = 10, font_weight = 'bold',
+        edge_color='purple')
+plt.title("Krackhardt Kite Grapgh", fontsize = 14)
+plt.show()
+```
+
+
+
+The link  is my [Github](https://github.com/joewarner89/Data-620/Homeworks) 
