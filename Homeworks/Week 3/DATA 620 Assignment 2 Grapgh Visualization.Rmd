@@ -68,8 +68,8 @@ else:
 
 ```{python}
 # Basic metrics 
-n = G.number_of_nodes()
-m = G.number_of_edges()
+n = G.number_of_nodes() # count the number of nodes
+m = G.number_of_edges() # count the number of edges
 
 
 # Degree statistics 
@@ -77,7 +77,7 @@ degrees = [d for _, d in G.degree()]
 avg_deg = sum(degrees)/len(degrees) if degrees else 0
 med_deg = statistics.median(degrees) if degrees else 0
 min_deg = min(degrees) if degrees else 0 
-max_deg = min(degrees) if degrees else 0
+max_deg = max(degrees) if degrees else 0
 ```
 
 
@@ -148,3 +148,8 @@ plt.show()
 nx.write_gexf(G, "amazon_subgraph.gexf")
 ```
 
+
+
+
+The Youtube Video for this assignment can be found [Here](https://www.youtube.com/watch?v=DlGBcwgwnJ0)
+and [GitHub](https://github.com/joewarner89/Data-620/tree/main/Homeworks/Week%203)
